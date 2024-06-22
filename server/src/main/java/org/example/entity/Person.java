@@ -1,31 +1,56 @@
 package org.example.entity;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.time.LocalDateTime;
+
+import static org.example.utility.CheckingReader.checkRead;
 
 public class Person implements Comparable<Person> {
     private long id; //uniq
     private String name;
     private Coordinates coordinates;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime creationDate; //!null, auto
     private double height; //height>0
-    private LocalDate birthday; //can be null
     private Integer weight; //weight>0, !null
     private Color hairColor; //!null
     private Location location; //!null
     static long countId = 0;
 
-    public Person(long id, String name, Coordinates coordinates, LocalDateTime creationDate, double height, LocalDate birthday, Integer weight, Color hairColor, Location location) {
+    public Person(String name, Coordinates coordinates, double height, Integer weight, Color hairColor, Location location) {
         super();
-        this.id = countId + 1;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = LocalDateTime.now();
         this.height = height;
-        this.birthday = birthday;
         this.weight = weight;
         this.hairColor = hairColor;
         this.location = location;
+    }
+
+    public void update(String[] args) {
+
+        this.name = (String) checkRead("s", args[0]);
+        this.coordinates = new Coordinates(
+                (Long) checkRead("l", args[1]),
+                (Long) checkRead("l", args[2]));
+
+        this.height = (double) checkRead("d", args[3]);
+        this.weight = (Integer) checkRead("i", args[4]);
+        this.hairColor = Color.choose(
+                (String) checkRead("s", args[6]));
+        this.location = new Location(
+                (Long) checkRead("l", args[7]),
+                (long) checkRead("l", args[7]),
+                (Float) checkRead("f", args[8]));
     }
 
     public Person(){}
@@ -68,14 +93,6 @@ public class Person implements Comparable<Person> {
 
     public void setHeight(double height) {
         this.height = height;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
     }
 
     public Integer getWeight() {

@@ -8,22 +8,13 @@ import java.nio.channels.DatagramChannel;
 
 public class Client {
 
-    private DatagramSocket socket;
+    protected DatagramChannel socket;
     private InetAddress address;
     private int port;
     boolean firstMessageFromClient = true;
 
-    public Client(InetAddress address, int port) {
-        this.address = address;
-        this.port = port;
-        try {
-            this.socket = new DatagramSocket();
-        } catch (SocketException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public Client(DatagramChannel clientChannel) {
+    public Client(DatagramChannel clientChannel) {clientChannel = socket;
     }
 
     public boolean isFirstMessageFromClient() {
@@ -34,11 +25,11 @@ public class Client {
         this.firstMessageFromClient = firstMessageFromClient;
     }
 
-    public DatagramSocket getSocket() {
+    public DatagramChannel getSocket() {
         return socket;
     }
 
-    public void setSocket(DatagramSocket socket) {
+    public void setSocket(DatagramChannel socket) {
         this.socket = socket;
     }
 
@@ -58,18 +49,6 @@ public class Client {
         this.port = port;
     }
 
-    public void sendMessage(String message) throws Exception {
-        byte[] buffer = message.getBytes();
-        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, port);
-        socket.send(packet);
-    }
-
-    public String receiveMessage() throws Exception {
-        byte[] buffer = new byte[1024]; // Размер буфера нужно подбирать в зависимости от ожидаемого размера сообщений
-        DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-        socket.receive(packet);
-        return new String(packet.getData(), 0, packet.getLength());
-    }
 }
 
 

@@ -10,7 +10,6 @@ import org.example.main.Response;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
-import java.nio.channels.SocketChannel;
 
 
 public class ServerMessaging {
@@ -31,7 +30,7 @@ public class ServerMessaging {
         } else throw new MessageWasNotRedSuccessful();
     }
 
-    public static void nioSend(SocketChannel clientChannel, String message) throws IOException {
+    public static void nioSend(DatagramChannel clientChannel, String message) throws IOException {
         Response resp = new Response();
         resp.addMessage(message);
         message = ObjectConverter.toJson(resp);

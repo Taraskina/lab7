@@ -7,6 +7,7 @@ import org.example.exceptions.MessageWasNotRedSuccessful;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.channels.*;
@@ -36,7 +37,7 @@ public class Server {
             this.datagramChannel.bind(new InetSocketAddress(port));
             this.datagramChannel.configureBlocking(false);
             this.selector = Selector.open();
-            this.datagramChannel.register(selector, SelectionKey.OP_ACCEPT);
+            this.datagramChannel.register(selector, OP_READ);
             log.info("Сервер настроен");
         } catch (IOException e) {
             log.error("Сервер не настроен", e);
@@ -66,7 +67,7 @@ public class Server {
 
         while (true) {//true
             this.getSelector().select();
-            log.info("мощность итератора по селетору = {}", getSelector().selectedKeys().size());
+            log.info("мощность итератора по селектору = {}", getSelector().selectedKeys().size());
             Iterator<SelectionKey> keysIterator = this.getSelector().selectedKeys().iterator();
             try {
                 while (keysIterator.hasNext()) {
@@ -74,7 +75,7 @@ public class Server {
                     keysIterator.remove();
                 }
             } catch (SocketException | ClosedChannelException e) {
-                client.channel.close();
+                client.socket.close();
             } catch (Exception e) {
                 log.error("ошибка,сервер чуть не лег", e);
             }
@@ -94,8 +95,8 @@ public class Server {
 
     private void handleAcception() throws IOException{
         log.info("ключ оказался доступным");
-        this.setClientChannel(this.getServerSocketChannel().accept());
-        this.client.channel.configureBlocking(false);
+        this.setClientChannel(this.getServerDatagramChannel().socket());
+        this.client.socket.configureBlocking(false);
         this.getClientChannel().register(this.getSelector(), OP_READ);
         log.info("Зарегали на селектор с read");
     }
@@ -123,9 +124,9 @@ public class Server {
                 setCommands();
             } else {
                 try {
-                    request.commandToExecute = request.commandToExecute.revalidate(request.getMessages().get(0));
+                    request.command = request.command.revalidate(request.getMessages().get(0));
 
-                    nioSend(this.getClientChannel(), request.getCommandToExecute().calling(request.commandToExecute.getArgs(), request.getCommandToExecute().getValue()));
+                    nioSend(this.getClientChannel(), request.getCommandToEx().calling(request.command.getArgs(), request.getCommandToEx().getValue()));
 
                 } catch (InvocationTargetException | IllegalAccessException e) {
                     log.info("Ошибка: неверно реализована команда",e);
@@ -143,7 +144,6 @@ public class Server {
         flag = true;
     }
 
-
     public DatagramChannel getServerDatagramChannel() {
         return datagramChannel;
     }
@@ -153,11 +153,11 @@ public class Server {
     }
 
     public DatagramChannel getClientChannel() {
-        return this.client.getSocket().getChannel();
+        return this.client.getSocket();
     }
 
-    public void setClientChannel(DatagramChannel clientChannel) {
-        this.client = new Client(clientChannel);
+    public void setClientChannel(DatagramSocket clientChannel) {
+        this.client = new Client(clientChannel.getChannel());
     }
 
     public Selector getSelector() {

@@ -27,11 +27,11 @@ public class CollectionManager {
         return manager;
     }
 
-    public void add(Person person) {
+    public synchronized void add(Person person) {
         this.collection.add(person);
     }
 
-    public Stream<Person> getCollectionStream() {
+    public synchronized Stream<Person> getCollectionStream() {
         return collection.stream();
     }
 
