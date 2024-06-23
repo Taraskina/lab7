@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2720a0f-a716-4421-812a-a0a470b7dd65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/example/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/entity/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/main/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/main/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/main/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/main/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/main/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/main/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/main/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/utility/ServerMessaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/utility/ServerMessaging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/example/utility/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/example/database/PasswordHasher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,9 +43,9 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "lab7",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/datar/Downloads/laba7-main/laba7-main",
+    "last_opened_file_path": "C:/Users/datar/Downloads/lab_7_java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,6 +69,9 @@
       <recent name="C:\Users\datar\IdeaProjects\Laba6FinalForMaksim\client\src\main\java\org\example\exceptions" />
       <recent name="C:\Users\datar\IdeaProjects\Laba6FinalForMaksim\client\src\main\java\org\example" />
       <recent name="C:\Users\datar\IdeaProjects\Laba6FinalForMaksim\server\src\main\java\org\example\entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.exceptions" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -133,6 +126,7 @@
       <updated>1718105799585</updated>
       <workItem from="1719065640182" duration="6918000" />
       <workItem from="1719073599274" duration="2115000" />
+      <workItem from="1719084266977" duration="5644000" />
     </task>
     <servers />
   </component>

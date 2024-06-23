@@ -24,8 +24,9 @@ public class Person implements Comparable<Person> {
     private Color hairColor; //!null
     private Location location; //!null
     static long countId = 0;
+    String ownerLogin;
 
-    public Person(String name, Coordinates coordinates, double height, Integer weight, Color hairColor, Location location) {
+    public Person(String name, Coordinates coordinates, double height, Integer weight, Color hairColor, Location location, String ownerLogin) {
         super();
         this.name = name;
         this.coordinates = coordinates;
@@ -34,6 +35,7 @@ public class Person implements Comparable<Person> {
         this.weight = weight;
         this.hairColor = hairColor;
         this.location = location;
+        this.ownerLogin = ownerLogin;
     }
 
     public void update(String[] args) {

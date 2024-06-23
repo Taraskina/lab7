@@ -1,4 +1,4 @@
-package org.example.utility;
+package org.example.entity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
