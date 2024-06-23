@@ -1,4 +1,8 @@
-package org.example.main;
+package org.example.main.request;
+
+import org.example.main.Command;
+import org.example.main.Message;
+import org.example.main.User;
 
 public class Request extends Message {
     public Command command;

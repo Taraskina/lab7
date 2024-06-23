@@ -2,6 +2,11 @@ package org.example.commands;
 
 import org.example.exceptions.WrongPasswordException;
 import org.example.main.*;
+import org.example.main.request.AuthenticateRequest;
+import org.example.main.responce.AuthenticateResponse;
+import org.example.main.responce.EmptyResponse;
+import org.example.main.responce.ErrorResponse;
+import org.example.main.responce.Response;
 import org.example.utility.Callable;
 
 import java.sql.SQLException;

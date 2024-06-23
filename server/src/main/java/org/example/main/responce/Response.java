@@ -1,6 +1,8 @@
-package org.example.main;
+package org.example.main.responce;
 
-public class Response extends Message{
+import org.example.main.Message;
+
+public class Response extends Message {
     private boolean success;
     private boolean flag;
 

@@ -3,6 +3,7 @@ package org.example.main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.exceptions.MessageWasNotRedSuccessful;
+import org.example.main.request.Request;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

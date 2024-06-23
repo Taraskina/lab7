@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.exceptions.MessageWasNotRedSuccessful;
-import org.example.main.Request;
-import org.example.main.Response;
+import org.example.main.request.Request;
+import org.example.main.responce.Response;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

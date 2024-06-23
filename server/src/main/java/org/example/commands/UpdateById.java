@@ -2,7 +2,7 @@ package org.example.commands;
 
 import org.example.main.Command;
 import org.example.main.CommandType;
-import org.example.main.Response;
+import org.example.main.responce.Response;
 import org.example.utility.Callable;
 
 import static org.example.main.App.collectionManager;

@@ -1,19 +1,27 @@
 package org.example.main;
 
 import org.example.commands.NotFound;
+import org.example.main.responce.Response;
 import org.example.utility.Callable;
+import org.example.utility.FileManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 public class Command implements Callable {
+    private final String nameInConsole;
     public String[] args;
     String value;
     private String name = "command";
-
+    protected FileManager fileManager;
+    protected CommandManager commandManager;
     public CommandType commandType = null;
+    protected CollectionManager collectionManager;
+
+    public Command(String nameInConsole) {
+        this.nameInConsole = nameInConsole;
+    }
 
     public Response calling(String[] args, String v) {
         Response response = new Response();
@@ -37,22 +45,22 @@ public class Command implements Callable {
         return answer;
     }
 
-    public static Command extractCommand (String str) throws InvocationTargetException, IllegalAccessException {
+    public static Command extractCommand(String str) throws InvocationTargetException, IllegalAccessException {
         String[] tokens = str.split(" ");
         String prefix = "";
-        for(int i = 0;i< tokens.length;i++){
-            prefix+=tokens[i];
-            if(Server.nameToHandleMap.containsKey(prefix)) {
+        for (int i = 0; i < tokens.length; i++) {
+            prefix += tokens[i];
+            if (Server.nameToHandleMap.containsKey(prefix)) {
                 Method factory = Server.nameToHandleMap.get(prefix);
                 if (i < tokens.length - 1) {
 
-                    return (Command)factory.invoke(null, tokens[i + 1], null);
+                    return (Command) factory.invoke(null, tokens[i + 1], null);
 
-                }else{
+                } else {
                     return (Command) factory.invoke(null, null, null);
                 }
             }
-            prefix+=" ";
+            prefix += " ";
         }
         return new NotFound();
 
@@ -113,5 +121,33 @@ public class Command implements Callable {
 
     public void setCommandType(CommandType commandType) {
         this.commandType = commandType;
+    }
+
+    public FileManager getFileManager() {
+        return fileManager;
+    }
+
+    public void setFileManager(FileManager fileManager) {
+        this.fileManager = fileManager;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    public void setCommandManager(CommandManager commandManager) {
+        this.commandManager = commandManager;
+    }
+
+    public CollectionManager getCollectionManager() {
+        return collectionManager;
+    }
+
+    public void setCollectionManager(CollectionManager collectionManager) {
+        this.collectionManager = collectionManager;
+    }
+
+    public String getNameInConsole() {
+        return nameInConsole;
     }
 }

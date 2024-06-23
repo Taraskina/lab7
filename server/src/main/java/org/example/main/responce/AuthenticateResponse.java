@@ -1,4 +1,6 @@
-package org.example.main;
+package org.example.main.responce;
+
+import org.example.main.User;
 
 public class AuthenticateResponse extends Response {
     private User user;

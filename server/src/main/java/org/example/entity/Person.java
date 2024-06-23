@@ -38,6 +38,17 @@ public class Person implements Comparable<Person> {
         this.ownerLogin = ownerLogin;
     }
 
+    public Person(String s, Coordinates coordinates, double d, Integer i, Color s1, Location location) {
+        super();
+        this.name = s;
+        this.coordinates = coordinates;
+        this.creationDate = LocalDateTime.now();
+        this.height = d;
+        this.weight = i;
+        this.hairColor = s1;
+        this.location = location;
+    }
+
     public void update(String[] args) {
 
         this.name = (String) checkRead("s", args[0]);
