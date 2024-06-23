@@ -1,8 +1,10 @@
 package org.example.main;
 
+import org.example.database.DatabaseConnection;
 import org.example.entity.Person;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +17,8 @@ public class CollectionManager {
     private static CollectionManager manager = null;
     public Date lastUpdated;
     private HashSet<Person> collection;
+    private DatabaseConnection connection;
+
 
     private CollectionManager() {
         this.collection = new HashSet<>();
@@ -70,6 +74,18 @@ public class CollectionManager {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public DatabaseConnection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(DatabaseConnection connection) {
+        this.connection = connection;
+    }
+    public void loadCollectionFromDB() throws SQLException {
+        this.collection = this.connection.getAllStudyGroups();
+
     }
 
 }
